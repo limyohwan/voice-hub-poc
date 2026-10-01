@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package control;
+
+option go_package = "voice-hub-poc/controlpb";
+
+// 제어 채널(TCP/TLS) 메시지. 길이 접두(varint) 프레이밍으로 주고받는다.
+message JoinRequest {
+  string channel = 1;
+}
+
+message JoinResponse {
+  uint32 member_id = 1; // UDP 음성 패킷 헤더에 넣을 id
+  string error = 2;     // 비어 있으면 성공
+}
